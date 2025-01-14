@@ -1,0 +1,23 @@
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        int[] ans = new int[2];
+        int maxA = 0;
+        int MaxB = 0;
+        int size = Math.max(nums1.length,nums2.length);
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        HashMap<Integer, Integer> hashMap2 = new HashMap<>();
+        for (int i = 0; i < size; i++) {
+            if (i < nums1.length)
+                hashMap.put(nums1[i], hashMap.getOrDefault(nums1[i], 0) + 1);
+            if (i < nums2.length)
+                hashMap2.put(nums2[i], hashMap2.getOrDefault(nums1[i], 0) + 1);
+        }
+        for(Map.Entry<Integer,Integer> map : hashMap.entrySet()){
+            if(hashMap2.containsKey(map.getKey())){
+                maxA += hashMap.get(map.getKey());
+                MaxB += hashMap2.get(map.getKey());
+            }
+        }
+        ans[0]=maxA;
+        ans[1]=MaxB;
+        return ans;
+    }
