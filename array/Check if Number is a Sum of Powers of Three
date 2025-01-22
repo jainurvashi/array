@@ -1,0 +1,37 @@
+/*1780. Check if Number is a Sum of Powers of Three
+Given an integer n, return true if it is possible to represent n as the sum of distinct powers of three. Otherwise, return false.
+
+An integer y is a power of three if there exists an integer x such that y == 3x.
+
+ 
+
+Example 1:
+
+Input: n = 12
+Output: true
+Explanation: 12 = 31 + 32*/
+
+
+class Solution {
+public boolean checkPowersOfThree(int n) {
+        List<Integer> list = new ArrayList<>();
+        int a = 1;
+        int power =0;
+        do {
+            while (a*3 <= n) {
+                a *= 3;
+                power++;
+            }
+                   if(list.contains(power))return false;
+            if(n==a) return true;
+     
+            list.add(power);
+            power=0;
+            n-=a;
+            a =1;
+        
+        }while(a<=n);
+       return false;
+
+    }
+}
